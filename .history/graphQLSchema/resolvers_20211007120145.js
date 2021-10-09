@@ -92,7 +92,7 @@ const resolvers = {
           }
         );
         return person;
-      } catch (error) {
+      } catch (e) {
         throw new UserInputError(error.message, {
           invalidArgs: args,
         });
@@ -105,8 +105,8 @@ const resolvers = {
       const user = new User({ username });
       try {
         return await user.save();
-      } catch (error) {
-        throw new UserInputError(error.message, {
+      } catch (err) {
+        throw new UserInputError(err.message, {
           invalidArgs: args.username,
         });
       }
