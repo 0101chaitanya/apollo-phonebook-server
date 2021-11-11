@@ -39,6 +39,7 @@ const server = new ApolloServer({
     Person,
   }),
 });
+const subscriptionsurl = 'http://localhost:4000/';
 server.listen().then(({ url, subscriptionsUrl }) => {
   console.log(`Server ready at ${url}`);
 

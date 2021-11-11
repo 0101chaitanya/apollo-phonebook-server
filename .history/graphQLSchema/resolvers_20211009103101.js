@@ -33,6 +33,8 @@ const resolvers = {
       return currentUser;
     },
   },
+
+  Subscription: {},
   Mutation: {
     addAsFriend: async (parent, args, context) => {
       const { dataSources, currentUser } = context;
@@ -140,11 +142,6 @@ const resolvers = {
         street: parent.street,
         city: parent.city,
       };
-    },
-  },
-  Subscription: {
-    personAdded: {
-      subscribe: () => pubsub.asyncIterator(['PERSON_ADDED']),
     },
   },
 };

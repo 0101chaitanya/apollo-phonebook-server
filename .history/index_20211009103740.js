@@ -19,6 +19,9 @@ mongoose
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  subscriptions: {
+    path: 'ws://localhost:3090',
+  },
   context: async ({ req }) => {
     const auth = req ? req.headers.authorization : null;
     if (auth && auth.toLowerCase().startsWith('bearer ')) {

@@ -74,15 +74,12 @@ const resolvers = {
         const saved = await person.save();
         currentUser.friends = currentUser.friends.concat(person);
         await currentUser.save();
-        //return saved;
+        return saved;
       } catch (error) {
         throw new UserInputError(error.message, {
           invalidArgs: args,
         });
       }
-
-      pubsub.publish('PERSON_ADDED', { personAdded: person });
-      return person;
     },
     editNumber: async (parent, args, context) => {
       const { dataSources, currentUser } = context;
@@ -140,11 +137,6 @@ const resolvers = {
         street: parent.street,
         city: parent.city,
       };
-    },
-  },
-  Subscription: {
-    personAdded: {
-      subscribe: () => pubsub.asyncIterator(['PERSON_ADDED']),
     },
   },
 };
